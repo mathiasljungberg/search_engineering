@@ -215,10 +215,7 @@ def main(source_dir: str, file_glob: str, index_name: str, workers: int, host: s
     client = get_opensearch(host)
 
     #TODO: set the refresh interval
-
-    #print(client.indices.get_settings(index=index_name))
     client.indices.put_settings(index=index_name,body={"index" : {"refresh_interval" : refresh_interval}})
-    print(client.indices.get_settings(index=index_name))
     logger.debug(client.indices.get_settings(index=index_name))
     start = perf_counter()
     time_indexing = 0
